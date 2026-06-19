@@ -1,8 +1,5 @@
-# Environment & secrets
 .env
 .env.*
-
-# Python
 .venv/
 __pycache__/
 *.pyc
@@ -11,15 +8,9 @@ __pycache__/
 *.egg-info/
 dist/
 build/
-
-# Logs
 *.log
 server_out.log
 server_err.log
-
-# Claude Code
 .claude/
-
-# OS
 .DS_Store
 Thumbs.db
