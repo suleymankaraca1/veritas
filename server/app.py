@@ -10,7 +10,7 @@ import sys
 import threading
 from datetime import date
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 from dotenv import load_dotenv
 
@@ -156,9 +156,13 @@ def analyze():
     })
 
 
+FRONTEND = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "frontend")
+
+
 @app.route("/", methods=["GET"])
-def index():
-    return jsonify({"status": "ok", "service": "VERITAS"})
+@app.route("/<path:filename>", methods=["GET"])
+def index(filename="index.html"):
+    return send_from_directory(FRONTEND, filename)
 
 
 @app.route("/api/health", methods=["GET"])
