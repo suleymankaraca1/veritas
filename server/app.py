@@ -156,6 +156,11 @@ def analyze():
     })
 
 
+@app.route("/", methods=["GET"])
+def index():
+    return jsonify({"status": "ok", "service": "VERITAS"})
+
+
 @app.route("/api/health", methods=["GET"])
 def health():
     return jsonify({"status": "ok", "service": "VERITAS"})
