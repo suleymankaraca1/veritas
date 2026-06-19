@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VERITAS — Content Verification System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCREEN 1: LANDING
+════════════════════════════════════════════════════════════ -->
+<div id="s-landing" class="screen s-active">
+
+  <nav class="bar">
+    <div class="logo"><span>VERITAS</span></div>
+    <div class="nav-links">
+      <a href="#how-it-works">How It Works</a>
+      <a href="#use-cases">Use Cases</a>
+    </div>
+    <div class="nav-right">
+      <button class="btn" data-action="try">Try Now <span class="arr">→</span></button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <canvas id="bgCanvas" class="hero-bg"></canvas>
+    <div class="hero-grid">
+      <div>
+        <h1 class="title">State the claim. <span class="acc">Proving it is on us.</span></h1>
+        <p class="sub">VERITAS parses your text sentence by sentence, <strong>automatically detects the claims within</strong>, scans the web with parallel research agents, and produces a sourced confidence report for each claim.</p>
+        <div class="hero-cta">
+          <button class="btn" data-action="try">Try Now <span class="arr">→</span></button>
+          <a href="#how-it-works" class="btn-secondary btn">How It Works</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="v">~23s</div>
+            <div class="l">Avg. report time</div>
+          </div>
+          <div class="stat">
+            <div class="v">×4–9</div>
+            <div class="l">Agents working in parallel</div>
+          </div>
+          <div class="stat">
+            <div class="v">0–100</div>
+            <div class="l">Confidence range per claim</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Demo report card -->
+      <div class="report" id="report">
+        <div class="report-hd">
+          <span class="session">Session #91c4 · Demo</span>
+          <span class="live">Live Verification</span>
+        </div>
+        <div class="report-body">
+          <div class="report-input-label">
+            <span>INPUT TEXT · 28 WORDS</span>
+            <span id="status-lbl">SCANNING…</span>
+          </div>
+          <div class="report-text">
+            Last year <span class="c" data-st="ok">Turkey's electric vehicle market grew 180%</span>; <span class="c" data-st="warn">BYD became the sector's leading manufacturer</span> and <span class="c" data-st="err">prices are expected to drop by year-end</span>.
+          </div>
+        </div>
+        <div class="claims-section">
+          <div class="claims-label">
+            <span>DETECTED CLAIMS</span>
+            <span class="step-tag">PARALLEL ANALYSIS</span>
+          </div>
+          <div class="claim-row">
+            <span class="id">C.01</span>
+            <span class="stmt">EV market grew 180% in 2025</span>
+            <span class="bar" style="--w:.92"></span>
+            <span class="pct">92%</span>
+          </div>
+          <div class="claim-row">
+            <span class="id">C.02</span>
+            <span class="stmt">BYD is the leading manufacturer</span>
+            <span class="bar warn" style="--w:.54"></span>
+            <span class="pct warn">54%</span>
+          </div>
+          <div class="claim-row">
+            <span class="id">C.03</span>
+            <span class="stmt">Prices expected to drop</span>
+            <span class="bar err" style="--w:.21"></span>
+            <span class="pct err">21%</span>
+          </div>
+        </div>
+        <div class="report-footer">
+          <span>8 agents · 14 sources · 7.2s</span>
+          <span class="verdict">Overall Confidence <span class="verdict-pct" id="vp">—</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="frame reveal" id="how-it-works">
+    <div class="sec-head">
+      <div><h2>Verification in three steps.</h2></div>
+      <div class="lead">VERITAS acts like a research team — breaks the work into parts, runs them in parallel, comes back with evidence.</div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="stp-no"><span>STEP 01</span><span class="ix">01</span></div>
+        <h4>Enter text</h4>
+        <p>A paragraph or a short note. The system parses the sentences and extracts verifiable claims from opinions.</p>
+        <div class="stp-vis">
+          <span class="pill">Last year</span>
+          <span class="pill hi">EV market grew 180%</span>
+          <span class="pill hi">BYD leading manufacturer</span>
+          <span class="pill hi">prices will drop</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="stp-no"><span>STEP 02</span><span class="ix">02</span></div>
+        <h4>Parallel agents</h4>
+        <p>An independent research agent is assigned for each claim. Agents simultaneously scan the web and cross-reference sources.</p>
+        <div class="stp-vis">
+          <div class="agent-line"><span>a.01</span><span class="pr" style="--w:.92"></span><span class="tt">92</span></div>
+          <div class="agent-line"><span>a.02</span><span class="pr warn" style="--w:.54"></span><span class="tt">54</span></div>
+          <div class="agent-line"><span>a.03</span><span class="pr err" style="--w:.21"></span><span class="tt">21</span></div>
+          <div class="agent-line"><span>a.04</span><span class="pr" style="--w:.88"></span><span class="tt">88</span></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="stp-no"><span>STEP 03</span><span class="ix">03</span></div>
+        <h4>Sourced report</h4>
+        <p>A confidence score, a brief rationale, and cited sources for each claim.</p>
+        <div class="stp-vis">
+          <div class="report-row"><span>EV market grew 180%</span><span class="num-r ok">92</span></div>
+          <div class="report-row"><span>BYD leading manufacturer</span><span class="num-r q">54</span></div>
+          <div class="report-row"><span>Prices will drop</span><span class="num-r no">21</span></div>
+          <div class="report-row"><span style="color:var(--ink);font-weight:500">Overall Confidence</span><span class="num-r" style="color:var(--accent)">56</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="frame tinted reveal" id="use-cases">
+    <div class="sec-head">
+      <div><h2>Designed for.</h2></div>
+      <div class="lead">For everyone who needs to work with evidence.</div>
+    </div>
+    <div class="users-grid">
+      <article class="user-card reveal" data-anim="card">
+        <div class="uc-head"><span class="uc-tag">PROFILE 01</span></div>
+        <h4>Journalists &amp; Editors</h4>
+        <p>Run all claims in an article through VERITAS before publishing. Fact-checking drops from minutes to seconds.</p>
+      </article>
+      <article class="user-card reveal" data-anim="card">
+        <div class="uc-head"><span class="uc-tag">PROFILE 02</span></div>
+        <h4>Academics &amp; Researchers</h4>
+        <p>Feed statistical claims from a literature review to VERITAS; it comes back with cited sources.</p>
+      </article>
+      <article class="user-card reveal" data-anim="card">
+        <div class="uc-head"><span class="uc-tag">PROFILE 03</span></div>
+        <h4>Corporate Communications &amp; PR</h4>
+        <p>Run a press release or public statement through VERITAS before publishing.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="end">
+    <h3>Try a claim</h3>
+    <p>Paste a text, get a sourced verification report in seconds.</p>
+    <div class="end-actions">
+      <button class="btn" data-action="try">Try Now <span class="arr">→</span></button>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="ft-left">
+      <div class="logo"><span>VERITAS</span></div>
+      <p>Independent content verification system. 2026.</p>
+    </div>
+    <div class="ft-right">v.2026.06 · EN · Band of Agents Hackathon</div>
+  </footer>
+
+</div><!-- /s-landing -->
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCREEN 2: DASHBOARD — Claim Input
+════════════════════════════════════════════════════════════ -->
+<div id="s-dashboard" class="screen s-app">
+  <div class="app">
+
+    <aside class="side">
+      <div class="side-nav">
+        <button class="nav-item active">
+          <span class="ic">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square" stroke-linejoin="miter">
+              <rect x="2" y="2" width="6" height="7"/>
+              <rect x="10" y="2" width="6" height="4"/>
+              <rect x="10" y="8" width="6" height="8"/>
+              <rect x="2" y="11" width="6" height="5"/>
+            </svg>
+          </span>
+          <span class="lbl">Dashboard</span>
+          <span class="tip">Dashboard</span>
+        </button>
+      </div>
+      <div class="side-bottom">
+        <button class="nav-item exit" id="dashExit">
+          <span class="ic">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square" stroke-linejoin="miter">
+              <path d="M11 2H4v14h7"/>
+              <path d="M9 9h7"/>
+              <path d="M13 6l3 3-3 3"/>
+            </svg>
+          </span>
+          <span class="tip">Home</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main" id="dashMain">
+      <canvas id="dashShader"></canvas>
+
+      <!-- Loading overlay -->
+      <div id="dashLoading" style="display:none; position:relative; z-index:1;">
+        <div class="loading-card">
+          <div class="loading-spinner"></div>
+          <p class="loading-title">Verifying…</p>
+          <div class="loading-pipeline">
+            <div class="lp-item" id="lp-1">Detecting claims</div>
+            <div class="lp-item" id="lp-2">4 agents researching in parallel</div>
+            <div class="lp-item" id="lp-3">Validating sources</div>
+            <div class="lp-item" id="lp-4">Generating report</div>
+          </div>
+          <p class="loading-note">This may take 45–90 seconds.</p>
+        </div>
+      </div>
+
+      <!-- Claim input -->
+      <div class="main-inner" id="dashInner">
+        <section class="card claim-input">
+          <div class="card-hd">
+            <span><span class="ttl">Claim Input</span><span class="ttl-tag">NEW VERIFICATION</span></span>
+            <span id="inputLbl">TEXT · 0 WORDS</span>
+          </div>
+          <div class="card-bd">
+            <textarea id="claimText" placeholder="Paste a paragraph, a sentence, or a short note. The system automatically extracts verifiable claims." maxlength="5000"></textarea>
+            <div class="claim-actions">
+              <div class="meta">
+                <span>Source: <b>Full Web + Academic</b></span>
+                <span>Mode: <b>Standard</b></span>
+              </div>
+              <div class="actions-r">
+                <button class="btn btn-secondary" id="btnClear">Clear</button>
+                <button class="btn" id="btnRun">Verify <span class="arr">→</span></button>
+              </div>
+            </div>
+            <div id="dashError" class="input-error" style="display:none"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+  </div>
+</div><!-- /s-dashboard -->
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCREEN 3: RESULTS
+════════════════════════════════════════════════════════════ -->
+<div id="s-results" class="screen s-app">
+  <div class="app">
+
+    <aside class="side">
+      <div class="side-nav">
+        <button class="nav-item active">
+          <span class="ic">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square" stroke-linejoin="miter">
+              <rect x="2" y="2" width="6" height="7"/>
+              <rect x="10" y="2" width="6" height="4"/>
+              <rect x="10" y="8" width="6" height="8"/>
+              <rect x="2" y="11" width="6" height="5"/>
+            </svg>
+          </span>
+          <span class="lbl">Dashboard</span>
+          <span class="tip">Dashboard</span>
+        </button>
+      </div>
+      <div class="side-bottom">
+        <button class="nav-item exit" id="resultsExit">
+          <span class="ic">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square" stroke-linejoin="miter">
+              <path d="M11 2H4v14h7"/>
+              <path d="M9 9h7"/>
+              <path d="M13 6l3 3-3 3"/>
+            </svg>
+          </span>
+          <span class="tip">New Verification</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="main" id="resultsMain">
+      <canvas id="resultsShader"></canvas>
+      <div class="main-inner results-inner">
+
+        <section class="card" id="reportCard">
+          <div class="card-hd">
+            <span><span class="ttl">Result Report</span><span class="ttl-tag">COMPLETED</span></span>
+            <span id="taskIdDisplay" style="font-family:var(--mono);font-size:11px;">—</span>
+          </div>
+          <div class="card-bd" id="reportBody">
+            <!-- Injected by renderResults() -->
+          </div>
+          <div class="verdict-strip">
+            <span class="lbl">OVERALL CONFIDENCE</span>
+            <span class="meter" id="verdictMeter" style="--w:0"></span>
+            <span class="vp-big" id="verdictVal">—</span>
+          </div>
+        </section>
+
+        <section class="card summary-section" id="summaryCard" style="display:none">
+          <div class="card-hd"><span class="ttl">Summary Assessment</span></div>
+          <div class="card-bd" id="summaryBody"></div>
+        </section>
+
+        <section class="card sources-section" id="sourcesCard" style="display:none">
+          <div class="card-hd"><span class="ttl">Sources</span></div>
+          <div class="card-bd" id="sourcesBody"></div>
+        </section>
+
+      </div>
+    </main>
+
+  </div>
+</div><!-- /s-results -->
+
+
+<script src="shader-bg.js"></script>
+
+<!-- Hero WebGL shader (landing only) -->
+<script>
+(function () {
+  window._initHeroShader = function () {
+    var canvas = document.getElementById('bgCanvas');
+    var hero = canvas && canvas.closest('.hero');
+    if (!canvas || !hero || canvas._ready) return;
+    canvas._ready = true;
+    var gl = canvas.getContext('webgl', { antialias: true, premultipliedAlpha: false, alpha: true });
+    if (!gl) return;
+    var vsSrc = 'attribute vec2 aPos; varying vec2 vUv; void main(){vUv=aPos*0.5+0.5;gl_Position=vec4(aPos,0.0,1.0);}';
+    var fsSrc = [
+      'precision mediump float;',
+      'varying vec2 vUv;',
+      'uniform vec2 uRes; uniform vec2 uMouse; uniform float uTime; uniform float uStr;',
+      'float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}',
+      'float noise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);vec2 u=f*f*(3.0-2.0*f);return mix(mix(hash(i),hash(i+vec2(1,0)),u.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),u.x),u.y);}',
+      'float fbm(vec2 p){float v=0.0,a=0.5;for(int i=0;i<5;i++){v+=a*noise(p);p*=2.02;a*=0.5;}return v;}',
+      'void main(){',
+      '  vec2 uv=vUv; float asp=uRes.x/uRes.y;',
+      '  vec2 cuv=(uv-0.5)*vec2(asp,1.0);',
+      '  vec2 cm=(uMouse-0.5)*vec2(asp,1.0);',
+      '  vec2 tm=cm-cuv; float md=length(tm);',
+      '  float mi=exp(-md*1.8)*uStr;',
+      '  vec3 bg=vec3(1.0),bg2=vec3(0.910,0.957,0.945),ac=vec3(0.235,0.580,0.490),ac2=vec3(0.490,0.745,0.658);',
+      '  vec2 p=cuv*1.4+vec2(uTime*0.025,uTime*0.018)+tm*mi*0.5;',
+      '  float n1=fbm(p),n2=fbm(p+vec2(2.3,-1.1)+uTime*0.03);',
+      '  vec2 fl=vec2(n1,n2)-0.5;',
+      '  float pl=fbm(p+fl*1.8+uTime*0.02);',
+      '  pl=smoothstep(0.25,0.78,pl);',
+      '  vec3 col=mix(bg,bg2,pl);',
+      '  col=mix(col,ac2,pl*pl*0.28);',
+      '  col=mix(col,ac,pl*mi*0.30);',
+      '  float vig=smoothstep(1.1,0.55,length(cuv));',
+      '  col=mix(bg,col,vig*0.95+0.05);',
+      '  col+=(hash(uv*uRes+uTime*50.0)-0.5)*0.006;',
+      '  gl_FragColor=vec4(col,1.0);',
+      '}'
+    ].join('\n');
+    function mk(t, s) { var sh = gl.createShader(t); gl.shaderSource(sh, s); gl.compileShader(sh); return sh; }
+    var prog = gl.createProgram();
+    gl.attachShader(prog, mk(gl.VERTEX_SHADER, vsSrc));
+    gl.attachShader(prog, mk(gl.FRAGMENT_SHADER, fsSrc));
+    gl.linkProgram(prog); gl.useProgram(prog);
+    var buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]), gl.STATIC_DRAW);
+    var ap = gl.getAttribLocation(prog, 'aPos');
+    gl.enableVertexAttribArray(ap); gl.vertexAttribPointer(ap, 2, gl.FLOAT, false, 0, 0);
+    var u = { res: gl.getUniformLocation(prog,'uRes'), mouse: gl.getUniformLocation(prog,'uMouse'), time: gl.getUniformLocation(prog,'uTime'), str: gl.getUniformLocation(prog,'uStr') };
+    var mouse = [0.5,0.5], tMouse = [0.5,0.5], mStr = 0.4, tStr = 0.4;
+    var t0 = performance.now();
+    function resize() {
+      var dpr = Math.min(window.devicePixelRatio||1,2);
+      var r = hero.getBoundingClientRect();
+      canvas.width = Math.max(1, Math.floor(r.width*dpr));
+      canvas.height = Math.max(1, Math.floor(r.height*dpr));
+      canvas.style.width = r.width+'px'; canvas.style.height = r.height+'px';
+      gl.viewport(0,0,canvas.width,canvas.height);
+    }
+    resize(); window.addEventListener('resize', resize);
+    hero.addEventListener('pointermove', function(e) {
+      var r = hero.getBoundingClientRect();
+      tMouse[0]=(e.clientX-r.left)/r.width; tMouse[1]=1-(e.clientY-r.top)/r.height; tStr=1;
+    });
+    hero.addEventListener('pointerleave', function(){ tStr=0.3; });
+    (function render() {
+      var t=(performance.now()-t0)/1000;
+      mouse[0]+=(tMouse[0]-mouse[0])*0.06; mouse[1]+=(tMouse[1]-mouse[1])*0.06;
+      mStr+=(tStr-mStr)*0.04;
+      gl.uniform2f(u.res,canvas.width,canvas.height);
+      gl.uniform2f(u.mouse,mouse[0],mouse[1]);
+      gl.uniform1f(u.time,t); gl.uniform1f(u.str,mStr);
+      gl.drawArrays(gl.TRIANGLES,0,6);
+      requestAnimationFrame(render);
+    })();
+  };
+
+  window._initReportAnim = function () {
+    var report = document.getElementById('report');
+    if (!report || report._animStarted) return;
+    report._animStarted = true;
+    var claims = report.querySelectorAll('.report-text .c');
+    var vp = document.getElementById('vp');
+    var statusLbl = document.getElementById('status-lbl');
+    function runCycle() {
+      report.classList.remove('done');
+      claims.forEach(function(c){ c.classList.remove('scan','done','ok','warn','err'); });
+      if (statusLbl){ statusLbl.textContent='SCANNING…'; statusLbl.style.color=''; }
+      if (vp) vp.textContent='—';
+      claims.forEach(function(cl,i){
+        var st=cl.dataset.st; var d=700+i*1100;
+        setTimeout(function(){ cl.classList.add('scan'); }, d);
+        setTimeout(function(){ cl.classList.remove('scan'); cl.classList.add('done',st); }, d+700);
+      });
+      setTimeout(function(){
+        report.classList.add('done');
+        if (statusLbl){ statusLbl.textContent='COMPLETED'; statusLbl.style.color='var(--accent)'; }
+        var v=0; var target=56;
+        (function tick(){ v+=2; if(v>=target){ if(vp) vp.textContent=target+'%'; return; } if(vp) vp.textContent=v+'%'; setTimeout(tick,24); })();
+      }, 700+claims.length*1100+800);
+      setTimeout(runCycle, 9500);
+    }
+    runCycle();
+  };
+})();
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>

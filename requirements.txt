@@ -1,0 +1,13 @@
+git+https://github.com/thenvoi/thenvoi-sdk-python.git
+band-sdk[langgraph]
+langchain-openai
+langchain
+langgraph
+openai
+tavily-python
+flask
+flask-cors
+python-dotenv
+httpx
+websockets
+requests
